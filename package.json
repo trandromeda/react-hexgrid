@@ -1,10 +1,13 @@
 {
-  "name": "react-hexgrid",
+  "name": "@trandromeda/react-hexgrid",
   "description": "Interactive hexagon grids with React bindings",
   "version": "1.0.3",
   "main": "lib/index.js",
   "author": "Hellenic",
-  "repository": "Hellenic/react-hexgrid",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/trandromeda/react-hexgrid.git"
+  },
   "license": "MIT",
   "scripts": {
     "compile": "babel src/ --out-dir lib",
@@ -35,5 +38,14 @@
   "files": [
     "lib/",
     "dist/"
-  ]
+  ],
+  "bugs": {
+    "url": "https://github.com/Hellenic/react-hexgrid/issues"
+  },
+  "homepage": "https://github.com/Hellenic/react-hexgrid#readme",
+  "directories": {
+    "example": "examples",
+    "lib": "lib",
+    "test": "test"
+  }
 }
