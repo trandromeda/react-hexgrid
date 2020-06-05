@@ -8,14 +8,10 @@ class Path extends Component {
     end: PropTypes.object,
     layout: PropTypes.object
   };
-  static contextTypes = {
-    layout: PropTypes.object // TODO Shape
-  };
 
   // TODO Refactor
   getPoints() {
-    const { start, end } = this.props;
-    const { layout } = this.context;
+    const { start, end, layout } = this.props;
     if (!start || !end) {
       return '';
     }
@@ -40,9 +36,10 @@ class Path extends Component {
 
   render() {
     return (
-      <path d={this.getPoints()}></path>
+      <path d={this.getPoints()} style={{stroke: 'white'}} ></path>
     );
   }
 }
 
 export default Path;
+

@@ -23,22 +23,19 @@ class Layout extends Component {
     origin: new Point(0, 0)
   }
 
-  static childContextTypes = {
-    layout: PropTypes.object, // TODO Shape
-    points: PropTypes.string
-  };
 
-  getChildContext() {
+  constructor(props) {
+    super(props)
     const { children, flat, className, ...rest } = this.props;
     const orientation = (flat) ? Layout.LAYOUT_FLAT : Layout.LAYOUT_POINTY;
     const cornerCoords = this.calculateCoordinates(orientation);
     const points = cornerCoords.map(point => `${point.x},${point.y}`).join(' ');
     const childLayout = Object.assign({}, rest, { orientation });
 
-    return {
+    this.state = {
       layout: childLayout,
       points
-    };
+    }
   }
 
   getPointOffset(corner, orientation, size) {
@@ -62,7 +59,13 @@ class Layout extends Component {
   }
 
   render() {
-    const { children, className } = this.props;
+    const { className } = this.props;
+    const children = React.Children.map(this.props.children, child => {
+      return React.cloneElement(child, {
+        layout: this.state.layout,
+        points: this.state.points
+      });
+    });
     return (
       <g className={className}>
         {children}
